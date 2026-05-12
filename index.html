@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>China in Charts: Population &amp; Industrialization</title>
+  <meta name="description" content="Interactive charts on the scale and breadth of China's population changes and rapid industrialization, 1950 to today." />
+  <link rel="stylesheet" href="css/styles.css" />
+  <script src="https://cdn.plot.ly/plotly-basic-2.35.2.min.js" charset="utf-8"></script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="#top">China in Charts</a>
+      <nav class="topnav" aria-label="Sections">
+        <a href="#population">Population</a>
+        <a href="#urbanization">Urbanization</a>
+        <a href="#economy">Economy</a>
+        <a href="#energy">Energy &amp; Emissions</a>
+        <a href="#infrastructure">Infrastructure</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <h1>The scale and breadth of China's transformation</h1>
+      <p class="lede">
+        In a single human lifetime, China has moved from a poor, rural, agrarian
+        society of roughly 550 million people to the world's largest manufacturer,
+        most populous nation now in decline, and largest emitter of CO<sub>2</sub>.
+        Ten charts on how big, and how fast.
+      </p>
+    </section>
+
+    <section id="population">
+      <h2>Population &amp; Demographics</h2>
+
+      <figure class="chart-block">
+        <div id="chart-population-total" class="chart" aria-label="China total population, 1950 to 2100"></div>
+        <figcaption>
+          <strong>1.4 billion, and now shrinking.</strong> China's population peaked
+          around 2022. The UN's medium-variant projection sees it falling below
+          800 million by 2100 — a reversal of the demographic story of the 20th century.
+        </figcaption>
+      </figure>
+
+      <figure class="chart-block">
+        <div id="chart-fertility-rate" class="chart" aria-label="China total fertility rate over time"></div>
+        <figcaption>
+          <strong>From 6 children per woman to under 1.1.</strong> The one-child
+          policy (1979) accelerated a fertility decline that was already underway.
+          The two-child (2016) and three-child (2021) reversals did not restore births.
+        </figcaption>
+      </figure>
+
+      <figure class="chart-block">
+        <div id="chart-population-pyramid" class="chart chart-tall" aria-label="China population pyramid, 1980 vs 2020 vs 2050"></div>
+        <figcaption>
+          <strong>An aging pyramid.</strong> In 1980, China's age structure was a
+          classic broad-base pyramid. By 2020, the working-age bulge had aged into
+          middle age; by 2050 (UN projection) the base has narrowed sharply.
+        </figcaption>
+      </figure>
+    </section>
+
+    <section id="urbanization">
+      <h2>Urbanization</h2>
+      <figure class="chart-block">
+        <div id="chart-urban-rural" class="chart" aria-label="China urban vs rural population share"></div>
+        <figcaption>
+          <strong>From 12% to 65% urban in two generations.</strong> Hundreds of
+          millions of people moved from countryside to city — the largest
+          urbanization in human history. Urban share overtook rural around 2011.
+        </figcaption>
+      </figure>
+    </section>
+
+    <section id="economy">
+      <h2>Economy &amp; Industry</h2>
+
+      <figure class="chart-block">
+        <div id="chart-gdp-growth" class="chart" aria-label="China annual real GDP growth"></div>
+        <figcaption>
+          <strong>Four decades of compounding.</strong> From 1980 to 2010, annual
+          real GDP growth averaged near 10%. Even the 2008 financial crisis barely
+          dented the curve; COVID-19 in 2020 produced the first major break.
+        </figcaption>
+      </figure>
+
+      <figure class="chart-block">
+        <div id="chart-sector-shares" class="chart" aria-label="China value added by sector"></div>
+        <figcaption>
+          <strong>From farms to factories to services.</strong> Agriculture's share
+          of value added fell from roughly 30% to under 10%. Industry surged with
+          reform, then services overtook industry as the largest sector.
+        </figcaption>
+      </figure>
+
+      <figure class="chart-block">
+        <div id="chart-mfg-share-global" class="chart" aria-label="China share of global manufacturing value added"></div>
+        <figcaption>
+          <strong>China's share of global manufacturing.</strong> From roughly 3%
+          in 1990 to about 30% today — the largest concentration of factory
+          output in any single country in modern history. China overtook the
+          United States as the world's largest manufacturer around 2010.
+        </figcaption>
+      </figure>
+    </section>
+
+    <section id="energy">
+      <h2>Energy &amp; Emissions</h2>
+
+      <figure class="chart-block">
+        <div id="chart-electricity-mix" class="chart" aria-label="China electricity generation by source"></div>
+        <figcaption>
+          <strong>Where China's electricity comes from.</strong> Coal still
+          dominates the grid, but solar and wind have grown from nothing to
+          gigawatt-scale generation in under two decades.
+        </figcaption>
+      </figure>
+
+      <figure class="chart-block">
+        <div id="chart-co2-vs-world" class="chart" aria-label="Annual CO2 emissions, China vs world"></div>
+        <figcaption>
+          <strong>China overtook the US as the largest emitter around 2006.</strong>
+          It now accounts for roughly 30% of global annual CO<sub>2</sub> emissions —
+          more than the US and EU combined.
+        </figcaption>
+      </figure>
+    </section>
+
+    <section id="infrastructure">
+      <h2>Infrastructure</h2>
+      <figure class="chart-block">
+        <div id="chart-hsr-network" class="chart" aria-label="China high-speed rail network length"></div>
+        <figcaption>
+          <strong>From zero to a continental network in 16 years.</strong>
+          High-speed rail in China went from 0 km in 2007 to more than
+          45,000 km today — more than the rest of the world combined.
+        </figcaption>
+      </figure>
+    </section>
+
+    <section id="sources" class="sources">
+      <h2>Sources &amp; Notes</h2>
+      <ul>
+        <li><a href="https://data.worldbank.org/">World Bank Open Data</a> (CC&nbsp;BY 4.0) — fertility, urban share, GDP growth, sector value added, manufacturing value added.</li>
+        <li><a href="https://population.un.org/wpp/">UN World Population Prospects 2024</a> — total population (estimates + medium variant), age pyramid.</li>
+        <li><a href="https://ourworldindata.org/">Our World in Data</a> (CC&nbsp;BY) — electricity generation by source, CO<sub>2</sub> emissions.</li>
+        <li>High-speed rail length compiled from China State Railway Group annual reports and <a href="https://en.wikipedia.org/wiki/High-speed_rail_in_China">Wikipedia</a>; see <code>data/README.md</code>.</li>
+      </ul>
+      <p class="footnote">Data snapshot built 2026. All charts use committed JSON in <code>/data</code>; refresh with <code>scripts/fetch_data.py</code>.</p>
+    </section>
+  </main>
+
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>

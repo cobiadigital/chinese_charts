@@ -1,0 +1,267 @@
+{
+  "source": "World Bank Open Data (SP.DYN.TFRT.IN)",
+  "country": "CHN",
+  "indicator": "Total fertility rate (births per woman)",
+  "series": [
+    {
+      "year": 1960,
+      "value": 4.451
+    },
+    {
+      "year": 1961,
+      "value": 3.863
+    },
+    {
+      "year": 1962,
+      "value": 6.085
+    },
+    {
+      "year": 1963,
+      "value": 7.513
+    },
+    {
+      "year": 1964,
+      "value": 6.672
+    },
+    {
+      "year": 1965,
+      "value": 6.605
+    },
+    {
+      "year": 1966,
+      "value": 6.307
+    },
+    {
+      "year": 1967,
+      "value": 5.806
+    },
+    {
+      "year": 1968,
+      "value": 6.508
+    },
+    {
+      "year": 1969,
+      "value": 6.175
+    },
+    {
+      "year": 1970,
+      "value": 6.085
+    },
+    {
+      "year": 1971,
+      "value": 5.523
+    },
+    {
+      "year": 1972,
+      "value": 5.112
+    },
+    {
+      "year": 1973,
+      "value": 4.726
+    },
+    {
+      "year": 1974,
+      "value": 4.17
+    },
+    {
+      "year": 1975,
+      "value": 3.571
+    },
+    {
+      "year": 1976,
+      "value": 3.235
+    },
+    {
+      "year": 1977,
+      "value": 2.844
+    },
+    {
+      "year": 1978,
+      "value": 2.716
+    },
+    {
+      "year": 1979,
+      "value": 2.745
+    },
+    {
+      "year": 1980,
+      "value": 2.739
+    },
+    {
+      "year": 1981,
+      "value": 2.792
+    },
+    {
+      "year": 1982,
+      "value": 2.972
+    },
+    {
+      "year": 1983,
+      "value": 2.559
+    },
+    {
+      "year": 1984,
+      "value": 2.607
+    },
+    {
+      "year": 1985,
+      "value": 2.633
+    },
+    {
+      "year": 1986,
+      "value": 2.721
+    },
+    {
+      "year": 1987,
+      "value": 2.76
+    },
+    {
+      "year": 1988,
+      "value": 2.539
+    },
+    {
+      "year": 1989,
+      "value": 2.52
+    },
+    {
+      "year": 1990,
+      "value": 2.514
+    },
+    {
+      "year": 1991,
+      "value": 1.934
+    },
+    {
+      "year": 1992,
+      "value": 1.776
+    },
+    {
+      "year": 1993,
+      "value": 1.691
+    },
+    {
+      "year": 1994,
+      "value": 1.628
+    },
+    {
+      "year": 1995,
+      "value": 1.588
+    },
+    {
+      "year": 1996,
+      "value": 1.554
+    },
+    {
+      "year": 1997,
+      "value": 1.527
+    },
+    {
+      "year": 1998,
+      "value": 1.522
+    },
+    {
+      "year": 1999,
+      "value": 1.53
+    },
+    {
+      "year": 2000,
+      "value": 1.628
+    },
+    {
+      "year": 2001,
+      "value": 1.563
+    },
+    {
+      "year": 2002,
+      "value": 1.566
+    },
+    {
+      "year": 2003,
+      "value": 1.57
+    },
+    {
+      "year": 2004,
+      "value": 1.605
+    },
+    {
+      "year": 2005,
+      "value": 1.624
+    },
+    {
+      "year": 2006,
+      "value": 1.644
+    },
+    {
+      "year": 2007,
+      "value": 1.666
+    },
+    {
+      "year": 2008,
+      "value": 1.701
+    },
+    {
+      "year": 2009,
+      "value": 1.714
+    },
+    {
+      "year": 2010,
+      "value": 1.687
+    },
+    {
+      "year": 2011,
+      "value": 1.668
+    },
+    {
+      "year": 2012,
+      "value": 1.798
+    },
+    {
+      "year": 2013,
+      "value": 1.714
+    },
+    {
+      "year": 2014,
+      "value": 1.769
+    },
+    {
+      "year": 2015,
+      "value": 1.67
+    },
+    {
+      "year": 2016,
+      "value": 1.772
+    },
+    {
+      "year": 2017,
+      "value": 1.795
+    },
+    {
+      "year": 2018,
+      "value": 1.539
+    },
+    {
+      "year": 2019,
+      "value": 1.496
+    },
+    {
+      "year": 2020,
+      "value": 1.236
+    },
+    {
+      "year": 2021,
+      "value": 1.117
+    },
+    {
+      "year": 2022,
+      "value": 1.034
+    },
+    {
+      "year": 2023,
+      "value": 0.999
+    },
+    {
+      "year": 2024,
+      "value": 1.013
+    }
+  ]
+}
