@@ -1,0 +1,79 @@
+{
+  "source": "China State Railway Group annual reports; en.wikipedia.org/wiki/High-speed_rail_in_China",
+  "indicator": "High-speed rail network operating length (km)",
+  "series": [
+    {
+      "year": 2007,
+      "value": 0
+    },
+    {
+      "year": 2008,
+      "value": 672
+    },
+    {
+      "year": 2009,
+      "value": 2699
+    },
+    {
+      "year": 2010,
+      "value": 5133
+    },
+    {
+      "year": 2011,
+      "value": 6601
+    },
+    {
+      "year": 2012,
+      "value": 9356
+    },
+    {
+      "year": 2013,
+      "value": 11028
+    },
+    {
+      "year": 2014,
+      "value": 16456
+    },
+    {
+      "year": 2015,
+      "value": 19000
+    },
+    {
+      "year": 2016,
+      "value": 22000
+    },
+    {
+      "year": 2017,
+      "value": 25000
+    },
+    {
+      "year": 2018,
+      "value": 29000
+    },
+    {
+      "year": 2019,
+      "value": 35000
+    },
+    {
+      "year": 2020,
+      "value": 37900
+    },
+    {
+      "year": 2021,
+      "value": 40000
+    },
+    {
+      "year": 2022,
+      "value": 42000
+    },
+    {
+      "year": 2023,
+      "value": 45000
+    },
+    {
+      "year": 2024,
+      "value": 48000
+    }
+  ],
+  "rest_of_world_combined_km": 27000
+}
