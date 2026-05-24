@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>America on the Move: Metro &amp; Rural Migration</title>
+  <meta name="description" content="Interactive maps of domestic migration to and from US metro and rural areas, 2021-2023, from Census Bureau estimates." />
+  <link rel="stylesheet" href="css/styles.css" />
+  <script src="https://cdn.plot.ly/plotly-2.35.2.min.js" charset="utf-8"></script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="#top">America on the Move</a>
+      <nav class="topnav" aria-label="Sections">
+        <a href="#states">States</a>
+        <a href="#counties">Counties</a>
+        <a href="#metro-rural">Metro vs Rural</a>
+        <a href="#metros">Metros</a>
+        <a href="index.html">China charts &rarr;</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <h1>America on the move: metro and rural migration</h1>
+      <p class="lede">
+        Where are Americans moving to, and away from? These maps track
+        <strong>net domestic migration</strong> &mdash; people moving between US
+        counties, excluding births, deaths, and international arrivals &mdash;
+        across the post-pandemic years 2021 to 2023. The pattern: a steady
+        outflow from the largest metros toward smaller metros, suburbs, and
+        rural counties, concentrated in the Sun Belt.
+      </p>
+    </section>
+
+    <section id="states">
+      <h2>Net migration by state</h2>
+      <figure class="chart-block">
+        <div id="map-state-migration" class="chart chart-tall" aria-label="US map of net domestic migration by state"></div>
+        <figcaption>
+          <strong>The Sun Belt gains, the coasts and Midwest lose.</strong>
+          Florida, Texas, and the Carolinas lead the nation in net domestic
+          migration, while California, New York, and Illinois see the largest
+          outflows. Use the buttons to switch between 2021, 2022, and 2023.
+        </figcaption>
+      </figure>
+    </section>
+
+    <section id="counties">
+      <h2>Net migration by county</h2>
+      <figure class="chart-block">
+        <div id="map-county-migration" class="chart chart-tall" aria-label="US county map of net domestic migration rate"></div>
+        <figcaption>
+          <strong>A donut pattern around the big cities.</strong> Shaded by net
+          domestic migration <em>rate</em> (per 1,000 residents): blue counties
+          gained movers, red counties lost them. Dense urban cores and the
+          coasts bled population, while exurban and rural counties &mdash;
+          especially across the South and Mountain West &mdash; filled up.
+        </figcaption>
+      </figure>
+    </section>
+
+    <section id="metro-rural">
+      <h2>To and from metro and rural areas</h2>
+      <figure class="chart-block">
+        <div id="chart-metro-rural-trend" class="chart" aria-label="Net domestic migration by county type, 2021 to 2023"></div>
+        <figcaption>
+          <strong>Big metros lose, everywhere else gains.</strong> Counties in
+          metro areas of a million or more people lost over 700,000 net domestic
+          migrants in 2021 alone. Mid-size and small metros, exurbs, and rural
+          counties all gained. The big-metro outflow has narrowed since the
+          pandemic peak but has not reversed.
+        </figcaption>
+      </figure>
+    </section>
+
+    <section id="metros">
+      <h2>Which metros are growing and shrinking</h2>
+      <figure class="chart-block">
+        <div id="chart-top-metros" class="chart chart-tall" aria-label="Top metro gainers and losers by net domestic migration, 2023"></div>
+        <figcaption>
+          <strong>Sun Belt up, gateway cities down.</strong> Dallas&ndash;Fort
+          Worth, Houston, and Tampa topped the list of metro gainers in 2023,
+          while New York, Los Angeles, and Chicago saw the largest net domestic
+          outflows of any metropolitan areas in the country.
+        </figcaption>
+      </figure>
+    </section>
+
+    <section id="sources" class="sources">
+      <h2>Sources &amp; Notes</h2>
+      <ul>
+        <li><a href="https://www.census.gov/programs-surveys/popest.html">US Census Bureau, Population Estimates Program, Vintage 2023</a> &mdash; county and metro components of change (net domestic migration).</li>
+        <li><a href="https://www.ers.usda.gov/data-products/rural-urban-continuum-codes/">USDA Economic Research Service, Rural-Urban Continuum Codes 2023</a> &mdash; county metro/non-metro classification.</li>
+        <li>County boundaries: <a href="https://github.com/plotly/datasets">Plotly US counties GeoJSON (FIPS)</a>.</li>
+      </ul>
+      <p class="footnote">
+        "Net domestic migration" counts moves between US counties only; it
+        excludes international migration and natural change (births minus
+        deaths). County map is shaded by rate per 1,000 residents; other charts
+        show people. Data snapshot built 2026; refresh with
+        <code>scripts/fetch_usa_data.py</code>.
+      </p>
+    </section>
+  </main>
+
+  <script type="module" src="js/usa-main.js"></script>
+</body>
+</html>
