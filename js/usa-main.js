@@ -24,6 +24,11 @@ const charts = [
     id: 'chart-top-metros',
     module: './maps/top-metros.js',
     data: 'data/usa/top_metros.json'
+  },
+  {
+    id: 'chart-metro-gross-flows',
+    module: './maps/metro-gross-flows.js',
+    data: 'data/usa/metro_gross_flows.json'
   }
 ];
 

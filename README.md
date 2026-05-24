@@ -34,6 +34,9 @@ python3 scripts/compile_manual_data.py
 
 # US migration page: Census PEP + USDA ERS + county GeoJSON (no API key needed)
 python3 scripts/fetch_usa_data.py
+
+# US gross metro flows: Census ACS metro-to-metro (needs openpyxl)
+python3 scripts/fetch_usa_flows.py
 ```
 
 `fetch_data.py` uses `requests` if available, otherwise falls back to the
@@ -62,6 +65,7 @@ standard library.
 | Counties | Choropleth: net domestic migration rate by county (year toggle) |
 | Metro vs Rural | Grouped bars: net migration by county type, 2021–2025 |
 | Metros | Diverging bars: largest metro gainers & losers, 2025 |
+| Gross flows | Back-to-back bars: gross in vs out per metro (ACS 2016–2020) |
 
 ## Layout
 

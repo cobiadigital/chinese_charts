@@ -24,10 +24,17 @@ truth used by the charts. Regenerate them with the scripts in `/scripts`.
 | `usa/county_migration.json` | Census PEP Vintage 2025 (`co-est2025-alldata`) | Net domestic migration RATE per 1,000, by county FIPS |
 | `usa/metro_rural_trend.json` | Census PEP + USDA ERS RUCC 2023 | Net domestic migration summed by Rural-Urban Continuum bucket |
 | `usa/top_metros.json` | Census PEP Vintage 2025 (`cbsa-est2025-alldata`) | Largest metro (MSA) gainers & losers, 2025 |
+| `usa/metro_gross_flows.json` | Census ACS 2016–2020 metro-to-metro flows | Gross domestic in/out per metro (two-way churn) |
 | `usa/counties-fips.geojson` | Plotly datasets | County boundaries keyed by FIPS `id` |
 
-None of the US sources require an API key — they are bulk CSVs from
-`www2.census.gov` and `ers.usda.gov`, plus a GeoJSON from GitHub.
+None of the US sources require an API key — they are bulk CSV/XLSX files from
+`www2.census.gov` and `ers.usda.gov`, plus a GeoJSON from GitHub. The
+gross-flows step (`fetch_usa_flows.py`) parses an `.xlsx` and needs
+`openpyxl` (`pip install openpyxl`); the others use only the standard library.
+
+Note: the PEP datasets are net migration through July 2025; the metro-to-metro
+gross flows are ACS 2016–2020 (the most recent flow product Census publishes),
+so the two reflect different periods.
 
 ## Regenerating
 
@@ -35,6 +42,7 @@ None of the US sources require an API key — they are bulk CSVs from
 python3 scripts/fetch_data.py           # China: World Bank + Our World in Data
 python3 scripts/compile_manual_data.py  # China: UN WPP + HSR
 python3 scripts/fetch_usa_data.py       # US migration: Census + USDA + GeoJSON
+python3 scripts/fetch_usa_flows.py      # US gross metro flows (needs openpyxl)
 ```
 
 `fetch_data.py` will fail loudly if a remote endpoint changes shape; check the
