@@ -1,8 +1,8 @@
-import { defaultLayout, defaultConfig, divergingRdBu, fmt } from '../chart-utils.js';
-
-const YEARS = ['2021', '2022', '2023'];
+import { defaultLayout, defaultConfig, divergingRdBu } from '../chart-utils.js';
 
 export function render(containerId, data) {
+  const YEARS = data.years;
+  const latest = YEARS[YEARS.length - 1];
   const states = data.states;
   const locations = states.map(s => s.usps);
   const names = states.map(s => s.name);
@@ -17,7 +17,7 @@ export function render(containerId, data) {
     type: 'choropleth',
     locationmode: 'USA-states',
     locations,
-    z: zFor('2023'),
+    z: zFor(latest),
     text: names,
     customdata: names,
     zmin: -cap,
@@ -35,7 +35,7 @@ export function render(containerId, data) {
   };
 
   const layout = defaultLayout({
-    title: { text: '<b>Net domestic migration by state &mdash; 2023</b>', x: 0, font: { size: 16 } },
+    title: { text: `<b>Net domestic migration by state &mdash; ${latest}</b>`, x: 0, font: { size: 16 } },
     geo: {
       scope: 'usa',
       bgcolor: 'rgba(0,0,0,0)',
