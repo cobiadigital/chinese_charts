@@ -9,7 +9,7 @@ No build step. Two pages:
 
 - **`index.html`** — ten charts on China's population & industrialization.
 - **`usa_migration.html`** — interactive maps of US domestic migration to and
-  from metro and rural areas, 2021–2023.
+  from metro and rural areas, 2021–2025.
 
 ## View the site locally
 
@@ -60,8 +60,8 @@ standard library.
 |---|---|
 | States | Choropleth: net domestic migration by state (year toggle) |
 | Counties | Choropleth: net domestic migration rate by county (year toggle) |
-| Metro vs Rural | Grouped bars: net migration by county type, 2021–2023 |
-| Metros | Diverging bars: largest metro gainers & losers, 2023 |
+| Metro vs Rural | Grouped bars: net migration by county type, 2021–2025 |
+| Metros | Diverging bars: largest metro gainers & losers, 2025 |
 
 ## Layout
 

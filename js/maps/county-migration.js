@@ -1,8 +1,8 @@
 import { defaultLayout, defaultConfig, divergingRdBu } from '../chart-utils.js';
 
-const YEARS = ['2021', '2022', '2023'];
-
 export function render(containerId, data, geojson) {
+  const YEARS = data.years;
+  const latest = YEARS[YEARS.length - 1];
   const counties = data.counties;
   const locations = counties.map(c => c.fips);
   const names = counties.map(c => c.name);
@@ -21,7 +21,7 @@ export function render(containerId, data, geojson) {
     geojson,
     featureidkey: 'id',
     locations,
-    z: zFor('2023'),
+    z: zFor(latest),
     customdata: names,
     zmin: -cap,
     zmax: cap,
@@ -38,7 +38,7 @@ export function render(containerId, data, geojson) {
   };
 
   const layout = defaultLayout({
-    title: { text: '<b>Net domestic migration rate by county &mdash; 2023</b>', x: 0, font: { size: 16 } },
+    title: { text: `<b>Net domestic migration rate by county &mdash; ${latest}</b>`, x: 0, font: { size: 16 } },
     geo: {
       scope: 'usa',
       bgcolor: 'rgba(0,0,0,0)',

@@ -30,10 +30,12 @@ ROOT = Path(__file__).resolve().parent.parent
 OUT = ROOT / "data" / "usa"
 OUT.mkdir(parents=True, exist_ok=True)
 
-CO_EST = "https://www2.census.gov/programs-surveys/popest/datasets/2020-2023/counties/totals/co-est2023-alldata.csv"
-CBSA_EST = "https://www2.census.gov/programs-surveys/popest/datasets/2020-2023/metro/totals/cbsa-est2023-alldata.csv"
+CO_EST = "https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/counties/totals/co-est2025-alldata.csv"
+CBSA_EST = "https://www2.census.gov/programs-surveys/popest/datasets/2020-2025/metro/totals/cbsa-est2025-alldata.csv"
 RUCC = "https://ers.usda.gov/sites/default/files/_laserfiche/DataFiles/53251/Ruralurbancontinuumcodes2023.csv"
 GEOJSON = "https://raw.githubusercontent.com/plotly/datasets/master/geojson-counties-fips.json"
+
+YEARS = ["2021", "2022", "2023", "2024", "2025"]
 
 FIPS_TO_USPS = {
     "01": "AL", "02": "AK", "04": "AZ", "05": "AR", "06": "CA", "08": "CO",
@@ -124,16 +126,13 @@ def build_state(states):
             "fips": fips,
             "usps": usps,
             "name": r["STNAME"],
-            "pop2023": to_int(r["POPESTIMATE2023"]),
-            "domesticmig": {
-                "2021": to_int(r["DOMESTICMIG2021"]),
-                "2022": to_int(r["DOMESTICMIG2022"]),
-                "2023": to_int(r["DOMESTICMIG2023"]),
-            },
+            "pop": to_int(r[f"POPESTIMATE{YEARS[-1]}"]),
+            "domesticmig": {y: to_int(r[f"DOMESTICMIG{y}"]) for y in YEARS},
         })
     write_json("state_migration.json", {
-        "source": "US Census Bureau, Population Estimates Program, Vintage 2023 (co-est2023-alldata)",
+        "source": "US Census Bureau, Population Estimates Program, Vintage 2025 (co-est2025-alldata)",
         "indicator": "Net domestic migration (people), July 1 year-over-year",
+        "years": YEARS,
         "states": out,
     })
 
@@ -145,18 +144,12 @@ def build_county(counties):
         out.append({
             "fips": fips,
             "name": f'{r["CTYNAME"]}, {FIPS_TO_USPS.get(r["STATE"], r["STATE"])}',
-            "rate": {
-                "2021": to_float(r.get("RDOMESTICMIG2021")),
-                "2022": to_float(r.get("RDOMESTICMIG2022")),
-                "2023": to_float(r.get("RDOMESTICMIG2023")),
-            },
-            "count": {
-                "2023": to_int(r.get("DOMESTICMIG2023")),
-            },
+            "rate": {y: to_float(r.get(f"RDOMESTICMIG{y}")) for y in YEARS},
         })
     write_json("county_migration.json", {
-        "source": "US Census Bureau, Population Estimates Program, Vintage 2023 (co-est2023-alldata)",
+        "source": "US Census Bureau, Population Estimates Program, Vintage 2025 (co-est2025-alldata)",
         "indicator": "Net domestic migration rate (per 1,000 residents)",
+        "years": YEARS,
         "counties": out,
     })
 
@@ -169,8 +162,7 @@ def build_metro_rural_trend(counties):
         if row.get("Attribute") == "RUCC_2023":
             rucc[row["FIPS"].zfill(5)] = row["Value"].strip()
 
-    years = ["2021", "2022", "2023"]
-    totals = {b: {y: 0 for y in years} for b in BUCKET_ORDER}
+    totals = {b: {y: 0 for y in YEARS} for b in BUCKET_ORDER}
     matched, unmatched = 0, 0
     for r in counties:
         fips = r["STATE"] + r["COUNTY"]
@@ -180,16 +172,16 @@ def build_metro_rural_trend(counties):
             unmatched += 1
             continue
         matched += 1
-        for y in years:
+        for y in YEARS:
             v = to_int(r.get(f"DOMESTICMIG{y}"))
             if v is not None:
                 totals[bucket][y] += v
     print(f"    RUCC matched {matched} counties, unmatched {unmatched}")
     write_json("metro_rural_trend.json", {
-        "source": "US Census Bureau PEP Vintage 2023 + USDA ERS Rural-Urban Continuum Codes 2023",
+        "source": "US Census Bureau PEP Vintage 2025 + USDA ERS Rural-Urban Continuum Codes 2023",
         "indicator": "Net domestic migration (people) summed by county type",
         "buckets": BUCKET_ORDER,
-        "years": years,
+        "years": YEARS,
         "totals": totals,
     })
 
@@ -197,24 +189,26 @@ def build_metro_rural_trend(counties):
 def build_top_metros():
     text = fetch_text(CBSA_EST)
     reader = csv.DictReader(io.StringIO(text))
+    latest = YEARS[-1]
     metros = []
     for row in reader:
         if row.get("LSAD") != "Metropolitan Statistical Area":
             continue
-        dm = to_int(row.get("DOMESTICMIG2023"))
+        dm = to_int(row.get(f"DOMESTICMIG{latest}"))
         if dm is None:
             continue
         metros.append({
             "name": row["NAME"],
-            "domesticmig2023": dm,
-            "pop2023": to_int(row.get("POPESTIMATE2023")),
+            "domesticmig": dm,
+            "pop": to_int(row.get(f"POPESTIMATE{latest}")),
         })
-    metros.sort(key=lambda m: m["domesticmig2023"], reverse=True)
+    metros.sort(key=lambda m: m["domesticmig"], reverse=True)
     gainers = metros[:12]
     losers = list(reversed(metros[-12:]))
     write_json("top_metros.json", {
-        "source": "US Census Bureau, Population Estimates Program, Vintage 2023 (cbsa-est2023-alldata)",
-        "indicator": "Net domestic migration (people), 2023, Metropolitan Statistical Areas",
+        "source": "US Census Bureau, Population Estimates Program, Vintage 2025 (cbsa-est2025-alldata)",
+        "indicator": f"Net domestic migration (people), {latest}, Metropolitan Statistical Areas",
+        "year": latest,
         "gainers": gainers,
         "losers": losers,
     })
@@ -234,7 +228,7 @@ def main():
     print(f"Writing into {OUT}")
     failures = []
     try:
-        print("County components of change (Census co-est2023)...")
+        print("County components of change (Census co-est2025)...")
         states, counties = build_from_county_file()
         build_state(states)
         build_county(counties)
@@ -243,7 +237,7 @@ def main():
         print(f"  FAILED county pipeline: {exc}", file=sys.stderr)
         failures.append("county pipeline")
     try:
-        print("Metro (CBSA) components (Census cbsa-est2023)...")
+        print("Metro (CBSA) components (Census cbsa-est2025)...")
         build_top_metros()
     except Exception as exc:
         print(f"  FAILED top_metros: {exc}", file=sys.stderr)

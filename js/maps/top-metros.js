@@ -11,6 +11,7 @@ function shortName(name) {
 }
 
 export function render(containerId, data) {
+  const year = data.year;
   // Combine top gainers and losers into one diverging bar, sorted ascending
   // so the biggest gainer sits at the top.
   const rows = [...data.losers, ...data.gainers];
@@ -23,20 +24,20 @@ export function render(containerId, data) {
     seen.add(r.name);
     uniq.push(r);
   }
-  uniq.sort((a, b) => a.domesticmig2023 - b.domesticmig2023);
+  uniq.sort((a, b) => a.domesticmig - b.domesticmig);
 
   const trace = {
     type: 'bar',
     orientation: 'h',
-    x: uniq.map(r => r.domesticmig2023),
+    x: uniq.map(r => r.domesticmig),
     y: uniq.map(r => shortName(r.name)),
     customdata: uniq.map(r => r.name),
-    marker: { color: uniq.map(r => r.domesticmig2023 >= 0 ? GAIN : LOSS) },
+    marker: { color: uniq.map(r => r.domesticmig >= 0 ? GAIN : LOSS) },
     hovertemplate: '<b>%{customdata}</b><br>Net domestic migration: %{x:+,.0f}<extra></extra>'
   };
 
   const layout = defaultLayout({
-    title: { text: '<b>Largest metro gainers and losers &mdash; 2023</b>', x: 0, font: { size: 16 } },
+    title: { text: `<b>Largest metro gainers and losers &mdash; ${year}</b>`, x: 0, font: { size: 16 } },
     showlegend: false,
     bargap: 0.25,
     xaxis: Object.assign({}, defaultLayout().xaxis, {

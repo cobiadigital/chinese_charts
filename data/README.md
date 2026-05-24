@@ -20,10 +20,10 @@ truth used by the charts. Regenerate them with the scripts in `/scripts`.
 
 | File | Source | Notes |
 |---|---|---|
-| `usa/state_migration.json` | Census PEP Vintage 2023 (`co-est2023-alldata`) | Net domestic migration by state, 2021–2023 |
-| `usa/county_migration.json` | Census PEP Vintage 2023 (`co-est2023-alldata`) | Net domestic migration RATE per 1,000, by county FIPS |
+| `usa/state_migration.json` | Census PEP Vintage 2025 (`co-est2025-alldata`) | Net domestic migration by state, 2021–2025 |
+| `usa/county_migration.json` | Census PEP Vintage 2025 (`co-est2025-alldata`) | Net domestic migration RATE per 1,000, by county FIPS |
 | `usa/metro_rural_trend.json` | Census PEP + USDA ERS RUCC 2023 | Net domestic migration summed by Rural-Urban Continuum bucket |
-| `usa/top_metros.json` | Census PEP Vintage 2023 (`cbsa-est2023-alldata`) | Largest metro (MSA) gainers & losers, 2023 |
+| `usa/top_metros.json` | Census PEP Vintage 2025 (`cbsa-est2025-alldata`) | Largest metro (MSA) gainers & losers, 2025 |
 | `usa/counties-fips.geojson` | Plotly datasets | County boundaries keyed by FIPS `id` |
 
 None of the US sources require an API key — they are bulk CSVs from
