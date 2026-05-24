@@ -2,6 +2,10 @@
 
 import { loadJSON, showError, showLoading, clearState } from './data-loader.js';
 
+// Bump on each deploy so browsers fetch fresh modules/data instead of cache.
+const APP_VERSION = '20260524b';
+const bust = (p) => `${p}${p.includes('?') ? '&' : '?'}v=${APP_VERSION}`;
+
 const charts = [
   { id: 'chart-population-total',   module: './charts/population-total.js',   data: 'data/population_total.json' },
   { id: 'chart-fertility-rate',     module: './charts/fertility-rate.js',     data: 'data/fertility_rate.json' },
@@ -25,8 +29,8 @@ async function mount(entry) {
   showLoading(entry.id);
   try {
     const [mod, data] = await Promise.all([
-      import(entry.module),
-      loadJSON(entry.data)
+      import(bust(entry.module)),
+      loadJSON(bust(entry.data))
     ]);
     clearState(entry.id);
     mod.render(entry.id, data);

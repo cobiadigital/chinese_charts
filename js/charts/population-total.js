@@ -25,7 +25,7 @@ export function render(containerId, data) {
   };
 
   const layout = defaultLayout({
-    title: { text: '<b>China total population, 1950–2100</b>', x: 0, font: { size: 16 } },
+    title: { text: '<b>China total population, 1950 to 2100</b>', x: 0, font: { size: 16 } },
     xaxis: Object.assign({}, defaultLayout().xaxis, { title: '' }),
     yaxis: Object.assign({}, defaultLayout().yaxis, {
       title: 'Population (millions)',

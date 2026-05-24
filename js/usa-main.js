@@ -3,6 +3,10 @@
 
 import { loadJSON, showError, showLoading, clearState } from './data-loader.js';
 
+// Bump on each deploy so browsers fetch fresh modules/data instead of cache.
+const APP_VERSION = '20260524b';
+const bust = (p) => `${p}${p.includes('?') ? '&' : '?'}v=${APP_VERSION}`;
+
 const charts = [
   {
     id: 'map-state-migration',
@@ -41,8 +45,8 @@ async function mount(entry) {
   if (!el) return;
   showLoading(entry.id);
   try {
-    const jobs = [import(entry.module), loadJSON(entry.data)];
-    if (entry.geojson) jobs.push(loadJSON(entry.geojson));
+    const jobs = [import(bust(entry.module)), loadJSON(bust(entry.data))];
+    if (entry.geojson) jobs.push(loadJSON(bust(entry.geojson)));
     const [mod, data, geojson] = await Promise.all(jobs);
     clearState(entry.id);
     mod.render(entry.id, data, geojson);

@@ -48,6 +48,10 @@ def is_domestic(code):
     return code.isdigit() and len(code) == 5
 
 
+def is_foreign(code):
+    return code.endswith("--")
+
+
 def num(v):
     try:
         return int(v)
@@ -72,7 +76,7 @@ def main():
     ws = wb.active
 
     names = {}
-    tin, tout = {}, {}
+    tin, tout, tintl = {}, {}, {}  # domestic in, domestic out, international in
 
     for row in ws.iter_rows(min_row=4, values_only=True):
         a, b, na, nb, flow, _, counter = row[0], row[1], row[2], row[3], row[4], row[5], row[6]
@@ -80,6 +84,7 @@ def main():
             continue
         a, b = str(a).strip(), str(b).strip()
         a_dom, b_dom = is_domestic(a), is_domestic(b)
+        a_for, b_for = is_foreign(a), is_foreign(b)
         if not (a_dom or b_dom):
             continue  # foreign-foreign or junk footnote rows
         # A node gets a bar only if it is a real metro (domestic, not the rural node).
@@ -87,23 +92,31 @@ def main():
         b_bar = b_dom and b != RURAL
         flow = num(flow)        # B -> A  (into A)
         counter = num(counter)  # A -> B  (out of A)
-        if a_bar and b_dom:
+        if a_bar:
             names.setdefault(a, str(na))
-            tin[a] = tin.get(a, 0) + flow
-            tout[a] = tout.get(a, 0) + counter
-        if b_bar and a_dom:
+            if b_dom:            # domestic counterpart: count in/out churn
+                tin[a] = tin.get(a, 0) + flow
+                tout[a] = tout.get(a, 0) + counter
+            elif b_for:          # foreign origin: count arrivals from abroad
+                tintl[a] = tintl.get(a, 0) + flow
+        if b_bar:
             names.setdefault(b, str(nb))
-            tin[b] = tin.get(b, 0) + counter
-            tout[b] = tout.get(b, 0) + flow
+            if a_dom:
+                tin[b] = tin.get(b, 0) + counter
+                tout[b] = tout.get(b, 0) + flow
+            elif a_for:
+                tintl[b] = tintl.get(b, 0) + counter
 
     metros = []
     for code, name in names.items():
         i, o = tin.get(code, 0), tout.get(code, 0)
+        intl = tintl.get(code, 0)
         metros.append({
             "code": code,
             "name": name.replace(" Metro Area", ""),
             "in": i,
             "out": o,
+            "intl": intl,
             "net": i - o,
             "gross": i + o,
         })
@@ -114,13 +127,14 @@ def main():
     with open(path, "w") as f:
         json.dump({
             "source": "US Census Bureau, ACS 2016-2020 5-year estimates, metro-to-metro migration flows",
-            "indicator": "Gross domestic migration into and out of each metro (people)",
+            "indicator": "Gross migration per metro: domestic in/out plus international arrivals (people)",
             "period": "2016-2020",
-            "note": "Domestic flows only (US metros + US non-metro areas); excludes international migration. Most recent metro-to-metro flow product published by Census.",
+            "note": "in/out are domestic moves (US metros + US non-metro areas); intl is arrivals from abroad. ACS measures residence one year prior, so emigration abroad is not captured. Most recent metro-to-metro flow product published by Census.",
             "metros": top,
         }, f, separators=(",", ":"))
     print(f"  wrote {path.relative_to(ROOT)} ({path.stat().st_size:,} bytes), {len(top)} metros")
-    print(f"  largest by churn: {top[0]['name']} (in {top[0]['in']:,} / out {top[0]['out']:,})")
+    t = top[0]
+    print(f"  largest by churn: {t['name']} (in {t['in']:,} / out {t['out']:,} / abroad {t['intl']:,})")
 
 
 if __name__ == "__main__":
