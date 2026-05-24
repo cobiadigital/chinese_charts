@@ -16,11 +16,25 @@ truth used by the charts. Regenerate them with the scripts in `/scripts`.
 | `co2_emissions.json` | Our World in Data | `owid-co2-data.csv`, columns `country, year, co2`; kept China / World / United States |
 | `hsr_network.json` | China State Railway Group + Wikipedia | Year-end operating length 2007–2024 |
 
+## US migration maps (`usa/`)
+
+| File | Source | Notes |
+|---|---|---|
+| `usa/state_migration.json` | Census PEP Vintage 2023 (`co-est2023-alldata`) | Net domestic migration by state, 2021–2023 |
+| `usa/county_migration.json` | Census PEP Vintage 2023 (`co-est2023-alldata`) | Net domestic migration RATE per 1,000, by county FIPS |
+| `usa/metro_rural_trend.json` | Census PEP + USDA ERS RUCC 2023 | Net domestic migration summed by Rural-Urban Continuum bucket |
+| `usa/top_metros.json` | Census PEP Vintage 2023 (`cbsa-est2023-alldata`) | Largest metro (MSA) gainers & losers, 2023 |
+| `usa/counties-fips.geojson` | Plotly datasets | County boundaries keyed by FIPS `id` |
+
+None of the US sources require an API key — they are bulk CSVs from
+`www2.census.gov` and `ers.usda.gov`, plus a GeoJSON from GitHub.
+
 ## Regenerating
 
 ```bash
-python3 scripts/fetch_data.py           # World Bank + Our World in Data
-python3 scripts/compile_manual_data.py  # UN WPP + HSR
+python3 scripts/fetch_data.py           # China: World Bank + Our World in Data
+python3 scripts/compile_manual_data.py  # China: UN WPP + HSR
+python3 scripts/fetch_usa_data.py       # US migration: Census + USDA + GeoJSON
 ```
 
 `fetch_data.py` will fail loudly if a remote endpoint changes shape; check the

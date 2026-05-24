@@ -4,8 +4,12 @@ Interactive charts on the scale and breadth of China's population changes and
 rapid industrialization, ~1950 to today (with UN projections to 2100 where
 relevant).
 
-A single static page, ten charts, built with vanilla HTML + ES modules +
-[Plotly.js](https://plotly.com/javascript/). No build step.
+Built with vanilla HTML + ES modules + [Plotly.js](https://plotly.com/javascript/).
+No build step. Two pages:
+
+- **`index.html`** — ten charts on China's population & industrialization.
+- **`usa_migration.html`** — interactive maps of US domestic migration to and
+  from metro and rural areas, 2021–2023.
 
 ## View the site locally
 
@@ -22,11 +26,14 @@ python3 -m http.server 8000
 Source-of-truth datasets live in `/data` as JSON. Two scripts rebuild them:
 
 ```bash
-# Pulls World Bank + Our World in Data via HTTP
+# China page: World Bank + Our World in Data via HTTP
 python3 scripts/fetch_data.py
 
-# Rewrites UN WPP + HSR datasets from compiled values in the script
+# China page: UN WPP + HSR datasets from compiled values in the script
 python3 scripts/compile_manual_data.py
+
+# US migration page: Census PEP + USDA ERS + county GeoJSON (no API key needed)
+python3 scripts/fetch_usa_data.py
 ```
 
 `fetch_data.py` uses `requests` if available, otherwise falls back to the
@@ -46,6 +53,15 @@ standard library.
 | 8 | Energy | Where China's electricity comes from |
 | 9 | Emissions | China vs. the world: annual CO₂ |
 | 10 | Infrastructure | Building HSR from zero |
+
+### US migration maps (`usa_migration.html`)
+
+| Section | Visualization |
+|---|---|
+| States | Choropleth: net domestic migration by state (year toggle) |
+| Counties | Choropleth: net domestic migration rate by county (year toggle) |
+| Metro vs Rural | Grouped bars: net migration by county type, 2021–2023 |
+| Metros | Diverging bars: largest metro gainers & losers, 2023 |
 
 ## Layout
 

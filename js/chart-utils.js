@@ -91,8 +91,21 @@ export function defaultConfig(overrides = {}) {
   }, overrides);
 }
 
+// Diverging red-white-blue scale for net-migration maps.
+// Negative (out-migration) = red, zero = white, positive (in-migration) = blue.
+export const divergingRdBu = [
+  [0.0, '#67000d'],
+  [0.15, '#cb181d'],
+  [0.35, '#fb6a4a'],
+  [0.5, '#f7f7f7'],
+  [0.65, '#6baed6'],
+  [0.85, '#2171b5'],
+  [1.0, '#08306b']
+];
+
 export const fmt = {
   millions: (n) => (n / 1e6).toFixed(0) + 'M',
+  signed: (n) => (n > 0 ? '+' : '') + Math.round(n).toLocaleString(),
   billions: (n) => (n / 1e9).toFixed(2) + 'B',
   popB: (n) => (n / 1000).toFixed(2) + 'B', // input is millions
   popM: (n) => n.toFixed(0) + 'M',          // input is millions
