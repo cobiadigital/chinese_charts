@@ -14,10 +14,10 @@ export function render(containerId, data) {
     x: buckets,
     y: buckets.map(b => data.totals[b][y]),
     marker: { color: colorFor(i) },
-    hovertemplate: `${y} &mdash; %{x}<br>Net migration: %{y:+,.0f}<extra></extra>`
+    hovertemplate: `${y}, %{x}<br>Net migration: %{y:+,.0f}<extra></extra>`
   }));
 
-  const span = `${years[0]}&ndash;${years[years.length - 1]}`;
+  const span = `${years[0]}-${years[years.length - 1]}`;
   const layout = defaultLayout({
     title: { text: `<b>Net domestic migration by county type, ${span}</b>`, x: 0, font: { size: 16 } },
     barmode: 'group',

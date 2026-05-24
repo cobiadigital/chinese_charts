@@ -41,7 +41,7 @@ export function render(containerId, data) {
   const xRange = Math.ceil(maxAcrossYears / 10) * 10;
 
   const layout = defaultLayout({
-    title: { text: `<b>China age pyramid — ${initial}</b>`, x: 0, font: { size: 16 } },
+    title: { text: `<b>China age pyramid, ${initial}</b>`, x: 0, font: { size: 16 } },
     barmode: 'overlay',
     bargap: 0.05,
     xaxis: Object.assign({}, defaultLayout().xaxis, {
@@ -74,7 +74,7 @@ export function render(containerId, data) {
             customdata: [maleAbs(y), null]
           },
           {
-            'title.text': `<b>China age pyramid — ${y}</b>`
+            'title.text': `<b>China age pyramid, ${y}</b>`
           }
         ]
       }))

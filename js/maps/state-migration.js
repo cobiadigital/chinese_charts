@@ -35,7 +35,7 @@ export function render(containerId, data) {
   };
 
   const layout = defaultLayout({
-    title: { text: `<b>Net domestic migration by state &mdash; ${latest}</b>`, x: 0, font: { size: 16 } },
+    title: { text: `<b>Net domestic migration by state, ${latest}</b>`, x: 0, font: { size: 16 } },
     geo: {
       scope: 'usa',
       bgcolor: 'rgba(0,0,0,0)',
@@ -57,7 +57,7 @@ export function render(containerId, data) {
         method: 'update',
         args: [
           { z: [zFor(y)] },
-          { 'title.text': `<b>Net domestic migration by state &mdash; ${y}</b>` }
+          { 'title.text': `<b>Net domestic migration by state, ${y}</b>` }
         ]
       }))
     }]

@@ -38,7 +38,7 @@ export function render(containerId, data, geojson) {
   };
 
   const layout = defaultLayout({
-    title: { text: `<b>Net domestic migration rate by county &mdash; ${latest}</b>`, x: 0, font: { size: 16 } },
+    title: { text: `<b>Net domestic migration rate by county, ${latest}</b>`, x: 0, font: { size: 16 } },
     geo: {
       scope: 'usa',
       bgcolor: 'rgba(0,0,0,0)',
@@ -60,7 +60,7 @@ export function render(containerId, data, geojson) {
         method: 'update',
         args: [
           { z: [zFor(y)] },
-          { 'title.text': `<b>Net domestic migration rate by county &mdash; ${y}</b>` }
+          { 'title.text': `<b>Net domestic migration rate by county, ${y}</b>` }
         ]
       }))
     }]

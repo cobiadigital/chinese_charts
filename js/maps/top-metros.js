@@ -37,7 +37,7 @@ export function render(containerId, data) {
   };
 
   const layout = defaultLayout({
-    title: { text: `<b>Largest metro gainers and losers &mdash; ${year}</b>`, x: 0, font: { size: 16 } },
+    title: { text: `<b>Largest metro gainers and losers, ${year}</b>`, x: 0, font: { size: 16 } },
     showlegend: false,
     bargap: 0.25,
     xaxis: Object.assign({}, defaultLayout().xaxis, {
